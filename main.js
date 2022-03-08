@@ -1,5 +1,6 @@
 const postsLists = document.querySelector('.posts-list');
 
+
 const posts = [
     {
         "id": 1,
@@ -93,29 +94,24 @@ for (let i = 0; i < posts.length; i++) {
     </div>`;    
     postsLists.append(post); 
 
-    const likeButton = document.querySelectorAll('.like-button');    
-        
-    likeButton[i].addEventListener('click', toggleLike)
+    const likeButton = document.querySelectorAll('.like-button');  
+    
+    console.log(posts[i].likes);
+
+    likeButton[i].addEventListener('click', function() {
+
+        this.classList.toggle('like-button--liked');
+        if (likeButton[i].classList.contains("like-button--liked") == true) {
+            posts[i].likes++;
+        } else {
+            posts[i].likes--;
+        }    
+        console.log(posts[i].likes);
+    });  
+
+
     likeButton[i].addEventListener('click', function(event){
         event.preventDefault()
-    });
-    console.log(likeButton);
-
-    let postLikes = posts[i].likes;
-
-    if (likeButton[i].classList.contains("like-button--liked") == true) {
-        postLikes++;
-    } else {
-        postLikes;
-    }
-    console.log(postLikes);
-
+    }); 
     
 };    
-
-
-/* FUNCTIONS */ 
-
-function toggleLike () {
-    this.classList.toggle('like-button--liked');
-}
