@@ -1,4 +1,4 @@
-const postsLists = document.querySelector(".posts-list");
+const postsLists = document.querySelector('.posts-list');
 
 const posts = [
     {
@@ -56,14 +56,13 @@ const posts = [
         "likes": 95,
         "created": "2021-03-05"
     }
+
 ];
-
-
 
 for (let i = 0; i < posts.length; i++) {
     
-    let post = document.createElement("div");
-    post.classList.add("post");
+    let post = document.createElement('div');
+    post.classList.add('post');
     post.innerHTML = `<div class="post__header">
         <div class="post-meta">                    
             <div class="post-meta__icon">
@@ -82,7 +81,7 @@ for (let i = 0; i < posts.length; i++) {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
+                <a class="like-button  js-like-button" href="#" data-postid="${posts[i].id}">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
@@ -92,6 +91,31 @@ for (let i = 0; i < posts.length; i++) {
             </div>
         </div> 
     </div>`;    
-    postsLists.append(post);
+    postsLists.append(post); 
 
+    const likeButton = document.querySelectorAll('.like-button');    
+        
+    likeButton[i].addEventListener('click', toggleLike)
+    likeButton[i].addEventListener('click', function(event){
+        event.preventDefault()
+    });
+    console.log(likeButton);
+
+    let postLikes = posts[i].likes;
+
+    if (likeButton[i].classList.contains("like-button--liked") == true) {
+        postLikes++;
+    } else {
+        postLikes;
+    }
+    console.log(postLikes);
+
+    
+};    
+
+
+/* FUNCTIONS */ 
+
+function toggleLike () {
+    this.classList.toggle('like-button--liked');
 }
