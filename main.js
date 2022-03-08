@@ -95,20 +95,21 @@ for (let i = 0; i < posts.length; i++) {
     postsLists.append(post); 
 
     const likeButton = document.querySelectorAll('.like-button');  
+    const likeCounter = document.querySelectorAll('.js-likes-counter');    
+
     
-    console.log(posts[i].likes);
-
     likeButton[i].addEventListener('click', function() {
-
+        
         this.classList.toggle('like-button--liked');
-        if (likeButton[i].classList.contains("like-button--liked") == true) {
+        if (likeButton[i].classList.contains('like-button--liked')) {
             posts[i].likes++;
         } else {
             posts[i].likes--;
         }    
         console.log(posts[i].likes);
-    });  
+        likeCounter[i].innerHTML = posts[i].likes;
 
+    });  
 
     likeButton[i].addEventListener('click', function(event){
         event.preventDefault()
